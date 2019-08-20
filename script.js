@@ -1,5 +1,5 @@
 const numSquares = 16;
-let backgroundColor = 'lightpink';
+let backgroundColor = 'white';
 
 
 
@@ -13,15 +13,15 @@ function main() {
         rowdiv.setAttribute('class','row')
 
         for (j=0;j<numSquares;j++) {
-            // alert("i: "+i+" j: "+j+"bgcolor: "+backgroundColor);
             const coldiv=document.createElement('div');
             coldiv.setAttribute('class','column');
             coldiv.style.background = backgroundColor;
             backgroundColor = toggleBgColor(backgroundColor);
-            rowdiv.appendChild(coldiv);
+            // rowdiv.appendChild(coldiv);
+            gridloc.appendChild(coldiv);
         }
 
-        gridloc.appendChild(rowdiv);
+        // gridloc.appendChild(rowdiv);
         backgroundColor = toggleBgColor(backgroundColor);
 
 
@@ -33,7 +33,7 @@ function main() {
 
 function toggleBgColor(curColor) {
     // mainly for testing creation of grid
-    return (curColor === 'lightpink'?'orchid':'lightpink');
+    return (curColor === 'white'?'rgb(243, 243, 243)':'white');
 }
 
 
