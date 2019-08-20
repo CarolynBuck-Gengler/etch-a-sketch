@@ -11,9 +11,13 @@
     width: 482px; /* 30 x 16 + 2 to make it big enough*/
     border: solid 1px grey;
 }
-.column {
+.cell {
     border: solid rgb(230, 229, 229) 1px;
     /* height: 30px; */
     /* width: 30px; */
     /* background-color: rgb(243, 243, 243); */
+}
+
+.cell:hover {
+    background: red;
 }

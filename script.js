@@ -14,15 +14,15 @@ function main() {
 
         for (j=0;j<numSquares;j++) {
             const coldiv=document.createElement('div');
-            coldiv.setAttribute('class','column');
-            coldiv.style.background = backgroundColor;
-            backgroundColor = toggleBgColor(backgroundColor);
+            coldiv.setAttribute('class','cell');
+            // coldiv.style.background = backgroundColor;
+            // backgroundColor = toggleBgColor(backgroundColor);
             // rowdiv.appendChild(coldiv);
             gridloc.appendChild(coldiv);
         }
 
         // gridloc.appendChild(rowdiv);
-        backgroundColor = toggleBgColor(backgroundColor);
+        // backgroundColor = toggleBgColor(backgroundColor);
 
 
     }
