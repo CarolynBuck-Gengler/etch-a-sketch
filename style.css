@@ -2,7 +2,9 @@
     box-sizing: border-box;
 }
 
-
+button {
+    cursor: pointer;
+}
 .etch-a-sketch-grid {
     display: grid;
     grid-template-columns: repeat(16,1fr);
@@ -17,7 +19,7 @@
     /* width: 30px; */
     /* background-color: rgb(243, 243, 243); */
 }
-
-/* .cell:hover {
-    background: red;
-} */
+footer {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: .7rem;
+}

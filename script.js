@@ -1,16 +1,15 @@
-const numSquares = 16;
+let numSquaresPerSide = 16;
 let backgroundColor = 'white';
+const gridSize = 1000;
+
 
 
 function main() {
     // set up grid
     
-    createGrid();
+    createGrid(numSquaresPerSide);
     const cells = document.querySelectorAll('.cell');
 
-    // alert("about to do event listener part");
-    // alert(cells);
-    // console.log(cells);
     cells.forEach((div) => {
         div.addEventListener('mouseenter', (e) => {
             div.style.backgroundColor = 'red';
@@ -18,14 +17,14 @@ function main() {
         div.addEventListener('mouseleave', (e) => {
             div.style.backgroundColor = 'pink';
         });
-        // div.addEventListener('click', (e) => {
-        //     console.log(e);
-        //     alert("click on cell ");
-        // });
     });
 
-
-
+    const resetButton = document.querySelector('.resetButton');
+    resetButton.addEventListener('click', (e) => {
+        cells.forEach((div) => {
+            div.style.backgroundColor = backgroundColor;
+        });
+    });
 
 }
 
@@ -34,7 +33,7 @@ function toggleBgColor(curColor) {
     return (curColor === 'white'?'rgb(243, 243, 243)':'white');
 }
 
-function createGrid() {
+function createGrid(numSquares) {
     const gridloc = document.querySelector(".etch-a-sketch-grid");
 
     for (i=0;i<numSquares;i++) {
