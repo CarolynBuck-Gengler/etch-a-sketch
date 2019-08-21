@@ -7,16 +7,17 @@ button {
 }
 .etch-a-sketch-grid {
     display: grid;
-    grid-template-columns: repeat(16,1fr);
+    /*grid-template-columns: repeat(16,1fr); *//* starting value */
     /* grid-template-rows: repeat(4,1fr); */
-    grid-auto-rows: 30px;
-    width: 482px; /* 30 x 16 + 2 to make it big enough*/
-    border: solid 1px grey;
+    grid-auto-rows: 62.5px; /* starting value */
+    width: 1000px; 
+    height: 1000px;
+    border: solid 1px rgb(245, 245, 245);
 }
 .cell {
-    border: solid rgb(230, 229, 229) 1px;
-    /* height: 30px; */
-    /* width: 30px; */
+    border: solid rgb(245, 245, 245) 1px;
+    height: 62.5px; /* starting value */
+    width: 62.5px; /* starting value */
     /* background-color: rgb(243, 243, 243); */
 }
 footer {
