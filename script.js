@@ -1,5 +1,6 @@
 let numSquaresPerSide = 16; /* starting value */
 let backgroundColor = 'white';
+let penColor = "rgba(0,0,0,1)"; /* start with black */
 const gridSize = 1000;
 const grid = document.querySelector(".cells");
 
@@ -9,29 +10,34 @@ const randomButton = document.querySelector('.colorRandom');
 const greyButton = document.querySelector('.colorGrey');
 
 resetButton.addEventListener('click', resetGrid, false);
-blackButton.addEventListener('click', notworking, false);
-randomButton.addEventListener('click', notworking, false);
-greyButton.addEventListener('click', notworking, false);
+blackButton.addEventListener('click', penBlack, false);
+randomButton.addEventListener('click', penRandom, false);
+greyButton.addEventListener('click', darken, false);
 
-function notworking(e) {
-    alert("functionality not yet working");
+function penBlack(e) {
+    penColor = 'black';
 }
+
+function penRandom(e) {
+    penColor = 'random';
+}
+
+function darken(e) {
+    penColor = "rgba(0,0,0,.1)";
+    console.log("in darken setting penColor to "+penColor);
+}
+
 function resetGrid(e) {
-    //const cells = document.querySelectorAll('.cell');
-    //cells.forEach((div) => {
-        removeGrid();
-        //resetButton.removeEventListener('click',resetGrid,false); /*doesn't seem to be helping*/ 
-        // div.style.backgroundColor = backgroundColor;
-        numSquaresPerSide = Number(prompt("How many squares per side? (1-200)",16));
-        console.log("just got new numsides per square = ",numSquaresPerSide);
-        console.log(typeof(numSquaresPerSide));
-        if (isNaN(numSquaresPerSide) || numSquaresPerSide>200 || numSquaresPerSide<1) {
-            alert("need a number between 1 and 200; using default of 16");
-            numSquaresPerSide = 16;
-        }
-        createGrid(numSquaresPerSide);
-        turnOnDrawing();
-    //});
+    removeGrid();
+    numSquaresPerSide = Number(prompt("How many squares per side? (1-200)",16));
+    console.log("just got new numsides per square = ",numSquaresPerSide);
+    console.log(typeof(numSquaresPerSide));
+    if (isNaN(numSquaresPerSide) || numSquaresPerSide>200 || numSquaresPerSide<1) {
+        alert("need a number between 1 and 200; using default of 16");
+        numSquaresPerSide = 16;
+    }
+    createGrid(numSquaresPerSide);
+    turnOnDrawing();
 } 
 
 function toggleBgColor(curColor) {
@@ -41,7 +47,7 @@ function toggleBgColor(curColor) {
 
 function createGrid(numSquares) {
     const sideVal = Math.floor(gridSize/numSquares*100)/100; /* keep only 2 decimal places, hope the grid looks better for vals that don't divide into 1000 evenly */
-    console.log("start createGrid with numsides = "+numSquares+" and sideVal = "+sideVal);
+    // console.log("start createGrid with numsides = "+numSquares+" and sideVal = "+sideVal);
 
     grid.style["grid-template-columns"] = "repeat("+numSquares+",1fr)";
     grid.style["grid-auto-rows"] = gridSize/numSquares+"px";
@@ -55,22 +61,55 @@ function createGrid(numSquares) {
             coldiv.setAttribute('class','cell');
             coldiv.style["width"] = sideVal+"px";
             coldiv.style["height"] = sideVal+"px";
+            coldiv.style.backgroundColor = backgroundColor;
             // coldiv.style.background = backgroundColor;
             // backgroundColor = toggleBgColor(backgroundColor);
-            // rowdiv.appendChild(coldiv);
             grid.appendChild(coldiv);
         }
     }
 }
+
+function genRandomColor() {
+    let r=Math.random()*256;
+    let g=Math.random()*256;
+    let b=Math.random()*256;
+    return "rgb("+r+","+g+","+b+")";
+}
+
 function turnOnDrawing() {
     const cells = document.querySelectorAll('.cell');
     cells.forEach((div) => {
         div.addEventListener('mouseenter', (e) => {
-            div.style.backgroundColor = 'red';
+            if (penColor === 'black') {
+                pen = 'black';
+            }
+            else if (penColor === 'random') {
+                pen = genRandomColor();
+            }
+            else {
+                //  if (penColor === 'darken') {
+                /* check current color of div, and darken by 10% in the alpha arg */
+                let curColor = div.style.backgroundColor;
+                console.log("current color is "+curColor);
+                if (curColor === "white") {
+                    // original color; make it the first pencolor
+                    pen = penColor;
+                } else {
+                    curColor = curColor.replace(/[^\d,.]/g, '').split(',');
+                    if (curColor.length === 4) {
+                        // haven't reached full black yet
+                        newAlpha = Number(curColor[3]) +.1;
+                    } else { newAlpha = 1;}
+                    pen = "rgb(0,0,0,"+newAlpha+")";
+                }
+            }
+            // else pen = penColor;
+            
+            div.style.backgroundColor = pen;
         });
-        div.addEventListener('mouseleave', (e) => {
-            div.style.backgroundColor = 'pink';
-        });
+        // div.addEventListener('mouseleave', (e) => {
+        //     div.style.backgroundColor = 'pink';
+        // });
     });
 }
 function removeGrid() {
