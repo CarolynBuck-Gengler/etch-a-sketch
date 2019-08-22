@@ -24,14 +24,11 @@ function penRandom(e) {
 
 function darken(e) {
     penColor = "rgba(0,0,0,.1)";
-    console.log("in darken setting penColor to "+penColor);
 }
 
 function resetGrid(e) {
     removeGrid();
     numSquaresPerSide = Number(prompt("How many squares per side? (1-200)",16));
-    console.log("just got new numsides per square = ",numSquaresPerSide);
-    console.log(typeof(numSquaresPerSide));
     if (isNaN(numSquaresPerSide) || numSquaresPerSide>200 || numSquaresPerSide<1) {
         alert("need a number between 1 and 200; using default of 16");
         numSquaresPerSide = 16;
@@ -40,20 +37,13 @@ function resetGrid(e) {
     turnOnDrawing();
 } 
 
-function toggleBgColor(curColor) {
-    // mainly for testing creation of grid
-    return (curColor === 'white'?'lightgrey':'white');
-}
-
 function createGrid(numSquares) {
     const sideVal = Math.floor(gridSize/numSquares*100)/100; /* keep only 2 decimal places, hope the grid looks better for vals that don't divide into 1000 evenly */
-    // console.log("start createGrid with numsides = "+numSquares+" and sideVal = "+sideVal);
 
     grid.style["grid-template-columns"] = "repeat("+numSquares+",1fr)";
     grid.style["grid-auto-rows"] = gridSize/numSquares+"px";
     for (i=0;i<numSquares;i++) {
-        const rowdiv=document.createElement('div');
-        
+        const rowdiv=document.createElement('div');        
         rowdiv.setAttribute('class','row')
 
         for (j=0;j<numSquares;j++) {
@@ -62,8 +52,6 @@ function createGrid(numSquares) {
             coldiv.style["width"] = sideVal+"px";
             coldiv.style["height"] = sideVal+"px";
             coldiv.style.backgroundColor = backgroundColor;
-            // coldiv.style.background = backgroundColor;
-            // backgroundColor = toggleBgColor(backgroundColor);
             grid.appendChild(coldiv);
         }
     }
@@ -87,7 +75,6 @@ function turnOnDrawing() {
                 pen = genRandomColor();
             }
             else {
-                //  if (penColor === 'darken') {
                 /* check current color of div, and darken by 10% in the alpha arg */
                 let curColor = div.style.backgroundColor;
                 console.log("current color is "+curColor);
@@ -103,13 +90,8 @@ function turnOnDrawing() {
                     pen = "rgb(0,0,0,"+newAlpha+")";
                 }
             }
-            // else pen = penColor;
-            
             div.style.backgroundColor = pen;
         });
-        // div.addEventListener('mouseleave', (e) => {
-        //     div.style.backgroundColor = 'pink';
-        // });
     });
 }
 function removeGrid() {
@@ -123,7 +105,6 @@ function main() {
     // set up grid
     createGrid(numSquaresPerSide);
     turnOnDrawing();
-
 }
 
 main();
