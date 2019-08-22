@@ -5,6 +5,8 @@ const gridSize = 1000;
 const grid = document.querySelector(".cells");
 let showGridLines = true;
 
+let mouseDownInGrid = false;
+
 const resetButton = document.querySelector('.resetButton');
 const blackButton = document.querySelector('.colorBlack');
 const randomButton = document.querySelector('.colorRandom');
@@ -18,6 +20,16 @@ randomButton.addEventListener('click', penRandom, false);
 greyButton.addEventListener('click', gradual, false);
 blankGridButton.addEventListener('click', blankGrid, false);
 toggleGridButton.addEventListener('click', toggleGrid,false);
+
+document.addEventListener('mousedown', makeMouseDownTrue, false);
+document.addEventListener('mouseup', makeMouseDownFalse, false);
+
+function makeMouseDownTrue(e) {
+    mouseDownInGrid = true;
+}
+function makeMouseDownFalse(e) {
+    mouseDownInGrid = false;
+}
 
 function penBlack(e) {
     penColor = 'black';
@@ -100,43 +112,45 @@ function turnOnDrawing() {
     const cells = document.querySelectorAll('.cell');
     cells.forEach((div) => {
         div.addEventListener('mouseenter', (e) => {
-            if (penColor === 'black') {
-                pen = 'black';
-            }
-            else if (penColor === 'random') {
-                pen = genRandomColor();
-            }
-            else {
-                /* gradual change from light grey to black */
-                /* check current color of div, and darken by 10% in the alpha arg */
-                /* sometimes colors that are originally 'black' get changed to 'rgb(0,0,0)'
-                   need to differentiate between squares that have reached black and not change 
-                   them back to light gray, and black that was placed there by drawing in black. 
-                   Do that by making full black arrived at by this method to be gb(0,0,0,.99)*/
-                let curColor = div.style.backgroundColor;
-                // console.log("current color is "+curColor);
-                if (curColor === "white") {
-                    // original color; make it the first pencolor
-                    pen = penColor;
-                } else {
-                    curColor = curColor.replace(/[^\d,.]/g, '').split(',');
-                    if (curColor.length === 4) {
-                        alpha = Number(curColor[3]);
-                        if (alpha < .9) {
-                            // haven't reached full black yet
-                            newAlpha = Number(curColor[3]) +.1;
-                        } else {
-                            newAlpha = .99;
+            // console.log("current mouse down status is "+ mouseDownInGrid);
+            if (mouseDownInGrid) {
+                if (penColor === 'black') {
+                    pen = 'black';
+                }
+                else if (penColor === 'random') {
+                    pen = genRandomColor();
+                }
+                else {
+                    /* gradual change from light grey to black */
+                    /* check current color of div, and darken by 10% in the alpha arg */
+                    /* sometimes colors that are originally 'black' get changed to 'rgb(0,0,0)'
+                    need to differentiate between squares that have reached black and not change 
+                    them back to light gray, and black that was placed there by drawing in black. 
+                    Do that by making full black arrived at by this method to be gb(0,0,0,.99)*/
+                    let curColor = div.style.backgroundColor;
+                    if (curColor === "white") {
+                        // original color; make it the first pencolor
+                        pen = penColor;
+                    } else {
+                        curColor = curColor.replace(/[^\d,.]/g, '').split(',');
+                        if (curColor.length === 4) {
+                            alpha = Number(curColor[3]);
+                            if (alpha < .9) {
+                                // haven't reached full black yet
+                                newAlpha = Number(curColor[3]) +.1;
+                            } else {
+                                newAlpha = .99;
+                            }
+                            pen = "rgb(0,0,0,"+newAlpha+")";
+                        } else { 
+                            /* current color has an rgb with 3 values */
+                            /* want to reset this to the grey! */
+                            pen = penColor; /* this is the original grey, i.e. black with alpha=.1*/
                         }
-                        pen = "rgb(0,0,0,"+newAlpha+")";
-                    } else { 
-                        /* current color has an rgb with 3 values */
-                        /* want to reset this to the grey! */
-                        pen = penColor; /* this is the original grey, i.e. black with alpha=.1*/
                     }
                 }
+                div.style.backgroundColor = pen;
             }
-            div.style.backgroundColor = pen;
         });
     });
 }
