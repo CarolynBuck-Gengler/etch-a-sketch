@@ -1,10 +1,12 @@
 * {
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
+    box-sizing: content-box;
 }
 
 button {
     cursor: pointer;
 }
+
 .etch-a-sketch-grid {
     display: grid;
     /*grid-template-columns: repeat(16,1fr); *//* starting value */
@@ -12,14 +14,16 @@ button {
     grid-auto-rows: 62.5px; /* starting value */
     width: 1000px; 
     height: 1000px;
-    border: solid 1px rgb(245, 245, 245);
+    /* border: solid 1px grey; */
 }
 .cell {
+    box-sizing: border-box;
     border: solid rgb(245, 245, 245) 1px;
     height: 62.5px; /* starting value */
     width: 62.5px; /* starting value */
     /* background-color: rgb(243, 243, 243); */
 }
+
 footer {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: .7rem;

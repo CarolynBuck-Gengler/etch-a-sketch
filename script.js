@@ -3,18 +3,21 @@ let backgroundColor = 'white';
 let penColor = "rgba(0,0,0,1)"; /* start with black */
 const gridSize = 1000;
 const grid = document.querySelector(".cells");
+let showGridLines = true;
 
 const resetButton = document.querySelector('.resetButton');
 const blackButton = document.querySelector('.colorBlack');
 const randomButton = document.querySelector('.colorRandom');
 const greyButton = document.querySelector('.colorGrey');
 const blankGridButton = document.querySelector('.blankGridButton');
+const toggleGridButton = document.querySelector('.toggleGridLines');
 
 resetButton.addEventListener('click', resetGrid, false);
 blackButton.addEventListener('click', penBlack, false);
 randomButton.addEventListener('click', penRandom, false);
 greyButton.addEventListener('click', gradual, false);
 blankGridButton.addEventListener('click', blankGrid, false);
+toggleGridButton.addEventListener('click', toggleGrid,false);
 
 function penBlack(e) {
     penColor = 'black';
@@ -32,6 +35,25 @@ function blankGrid(e) {
     mycells.forEach((div) => {
         div.style.backgroundColor = backgroundColor;
     });    
+}
+function toggleGrid(e) {
+    /* Show either gridlines and border in same light grey color OR show no gridlines and darker border */
+    /* toggle back and forth between these states */
+    let mycells = document.querySelectorAll(".cell");
+    if (showGridLines) {
+        /* turn off gridlines for each cell and turn on outer border */
+        grid.style.border = "2px solid black";
+        mycells.forEach((div) => {
+            div.style.border = "none";
+        });    
+    } else {
+        /* turn on gridlines for each cell and turn off outer border */
+        grid.style.border = "none";
+        mycells.forEach((div) => {
+            div.style.border = "solid rgb(245, 245, 245) 1px";
+        });
+    }
+    showGridLines = (showGridLines?false:true);
 }
 
 function resetGrid(e) {
@@ -92,7 +114,7 @@ function turnOnDrawing() {
                    them back to light gray, and black that was placed there by drawing in black. 
                    Do that by making full black arrived at by this method to be gb(0,0,0,.99)*/
                 let curColor = div.style.backgroundColor;
-                console.log("current color is "+curColor);
+                // console.log("current color is "+curColor);
                 if (curColor === "white") {
                     // original color; make it the first pencolor
                     pen = penColor;
@@ -108,10 +130,9 @@ function turnOnDrawing() {
                         }
                         pen = "rgb(0,0,0,"+newAlpha+")";
                     } else { 
-                        /* current color must have an rgb with 3 values */
+                        /* current color has an rgb with 3 values */
                         /* want to reset this to the grey! */
-                        // newAlpha = "";
-                        pen = penColor;
+                        pen = penColor; /* this is the original grey, i.e. black with alpha=.1*/
                     }
                 }
             }
