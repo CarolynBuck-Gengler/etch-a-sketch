@@ -78,7 +78,7 @@ function resetGrid(e) {
         numSquaresPerSide = newnumsquares; 
     }
     createGrid(numSquaresPerSide);
-    turnOnDrawing();
+    setPenColor();
 } 
 
 function createGrid(numSquares) {
@@ -108,7 +108,7 @@ function genRandomColor() {
     return "rgb("+r+","+g+","+b+")";
 }
 
-function turnOnDrawing() {
+function setPenColor() {
     const cells = document.querySelectorAll('.cell');
     cells.forEach((div) => {
         div.addEventListener('mouseenter', (e) => {
@@ -164,7 +164,7 @@ function removeGrid() {
 function main() {
     // set up grid
     createGrid(numSquaresPerSide);
-    turnOnDrawing();
+    setPenColor();
 }
 
 main();
