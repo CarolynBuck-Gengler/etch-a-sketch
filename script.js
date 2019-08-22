@@ -12,7 +12,7 @@ const greyButton = document.querySelector('.colorGrey');
 resetButton.addEventListener('click', resetGrid, false);
 blackButton.addEventListener('click', penBlack, false);
 randomButton.addEventListener('click', penRandom, false);
-greyButton.addEventListener('click', darken, false);
+greyButton.addEventListener('click', gradual, false);
 
 function penBlack(e) {
     penColor = 'black';
@@ -22,7 +22,7 @@ function penRandom(e) {
     penColor = 'random';
 }
 
-function darken(e) {
+function gradual(e) {
     penColor = "rgba(0,0,0,.1)";
 }
 
@@ -75,7 +75,12 @@ function turnOnDrawing() {
                 pen = genRandomColor();
             }
             else {
+                /* gradual change from light grey to black */
                 /* check current color of div, and darken by 10% in the alpha arg */
+                /* sometimes colors that are originally 'black' get changed to 'rgb(0,0,0)'
+                   need to differentiate between squares that have reached black and not change 
+                   them back to light gray, and black that was placed there by drawing in black. 
+                   Do that by making full black arrived at by this method to be gb(0,0,0,.99)*/
                 let curColor = div.style.backgroundColor;
                 console.log("current color is "+curColor);
                 if (curColor === "white") {
@@ -84,10 +89,20 @@ function turnOnDrawing() {
                 } else {
                     curColor = curColor.replace(/[^\d,.]/g, '').split(',');
                     if (curColor.length === 4) {
-                        // haven't reached full black yet
-                        newAlpha = Number(curColor[3]) +.1;
-                    } else { newAlpha = 1;}
-                    pen = "rgb(0,0,0,"+newAlpha+")";
+                        alpha = Number(curColor[3]);
+                        if (alpha < .9) {
+                            // haven't reached full black yet
+                            newAlpha = Number(curColor[3]) +.1;
+                        } else {
+                            newAlpha = .99;
+                        }
+                        pen = "rgb(0,0,0,"+newAlpha+")";
+                    } else { 
+                        /* current color must have an rgb with 3 values */
+                        /* want to reset this to the grey! */
+                        // newAlpha = "";
+                        pen = penColor;
+                    }
                 }
             }
             div.style.backgroundColor = pen;
