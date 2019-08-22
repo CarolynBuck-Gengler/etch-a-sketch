@@ -36,10 +36,12 @@ function blankGrid(e) {
 
 function resetGrid(e) {
     removeGrid();
-    numSquaresPerSide = Number(prompt("How many squares per side? (1-200)",16));
-    if (isNaN(numSquaresPerSide) || numSquaresPerSide>200 || numSquaresPerSide<1) {
-        alert("need a number between 1 and 200; using default of 16");
-        numSquaresPerSide = 16;
+    let newnumsquares = Number(prompt("How many squares per side? (1-200)",numSquaresPerSide));
+    if (isNaN(newnumsquares) || newnumsquares>200 || newnumsquares<1) {
+        alert("need a number between 1 and 200; using previous value "+numSquaresPerSide);
+        // numSquaresPerSide = 16;
+    } else { 
+        numSquaresPerSide = newnumsquares; 
     }
     createGrid(numSquaresPerSide);
     turnOnDrawing();
