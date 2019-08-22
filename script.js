@@ -8,11 +8,13 @@ const resetButton = document.querySelector('.resetButton');
 const blackButton = document.querySelector('.colorBlack');
 const randomButton = document.querySelector('.colorRandom');
 const greyButton = document.querySelector('.colorGrey');
+const blankGridButton = document.querySelector('.blankGridButton');
 
 resetButton.addEventListener('click', resetGrid, false);
 blackButton.addEventListener('click', penBlack, false);
 randomButton.addEventListener('click', penRandom, false);
 greyButton.addEventListener('click', gradual, false);
+blankGridButton.addEventListener('click', blankGrid, false);
 
 function penBlack(e) {
     penColor = 'black';
@@ -24,6 +26,12 @@ function penRandom(e) {
 
 function gradual(e) {
     penColor = "rgba(0,0,0,.1)";
+}
+function blankGrid(e) {
+    let mycells = document.querySelectorAll(".cell");
+    mycells.forEach((div) => {
+        div.style.backgroundColor = backgroundColor;
+    });    
 }
 
 function resetGrid(e) {
