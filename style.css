@@ -1,30 +1,81 @@
 * {
     /* box-sizing: border-box; */
     box-sizing: content-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+html {
+    background-image: url("images/Pngtree-vector-japanese-watercolor-pastel-background_497972.jpg");
+    background-size: cover;
+    height: 100%;
+    background-position: center;
+    min-width: 1020px;
 }
 
+body {
+    min-height: 100%; 
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* there are THREE rows. adjust grid-row-start and end accordingly*/ 
+    grid-template-areas: 
+        "header" 
+        "main" 
+        "footer";
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(201, 33, 201); /* a bright pinkish purple */
+}
 button {
     cursor: pointer;
+    /* height: 40px;
+    word-wrap:break-word;
+    max-width: 150px; */
+}
+
+.description, .buttons {
+    margin: 0 100px;
+}
+.buttons {
+    text-align: center;
+}
+.disclaimer {
+    text-align: center;
+    color:  rgb(121, 118, 118); /* darker than dark grey*/
+    font-size: .8rem;
 }
 
 .etch-a-sketch-grid {
+    margin: 30px auto;
     display: grid;
-    /*grid-template-columns: repeat(16,1fr); *//* starting value */
-    /* grid-template-rows: repeat(4,1fr); */
     grid-auto-rows: 62.5px; /* starting value */
-    width: 1000px; 
-    height: 1000px;
-    /* border: solid 1px grey; */
+    width: 800px; /* if change width and height, make sure to change gridSize in script.js as well */ 
+    height: 800px;
 }
 .cell {
     box-sizing: border-box;
     border: solid rgb(245, 245, 245) 1px;
     height: 62.5px; /* starting value */
     width: 62.5px; /* starting value */
-    /* background-color: rgb(243, 243, 243); */
 }
-
+.current {
+    text-align: center;
+    color: rgb(121, 118, 118); /* darker than dark grey*/
+}
+.current span {
+    color: rgb(201, 33, 201); /* a bright pinkish purple */
+}
 footer {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: .7rem;
+    height: 80px;
+    width: 100%;
+    font-size: .8rem;
+    text-align: center;
+    margin-top: 10px;
 }
+footer p{
+    margin: 0;
+}
+.footer {
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }

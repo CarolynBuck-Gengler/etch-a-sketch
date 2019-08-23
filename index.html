@@ -4,37 +4,54 @@
 <!-- https://www.theodinproject.com/courses/web-development-101/lessons/etch-a-sketch-project -->
 
   <head>
-    <title>cjbg Etch-A-Sketch</title>
+    <title>cjbg Etch A Sketch</title>
     <link rel="stylesheet" href="style.css">
   </head>
+
   <body>
-    <header>
-      <h1>cjbg etch-a-sketch project</h1>
+    <header class="header">
+      <h1>cjbg Etch A Sketch project</h1>
     </header>
 
-    <div class="buttons">
-      <button type="button" class="resetButton">Reset and choose new pixel size</button>
-      <button type="button" class="blankGridButton">Reset only</button>
-      <button type="button" class="colorBlack">Draw in black</button>
-      <button type="button" class="colorRandom">Random colors</button>
-      <button type="button" class="colorGrey">Gradual grey->black</button>
-      <button type="button" class="toggleGridLines">Toggle grid lines and outer border</button>
-    </div>
+    <main class="main">
+        <div class="description">
+            <p>Welcome to Etch A Sketch!</p>
+            <ul>
+               <li>You can draw with three different pens: black, random, or 
+              one that starts light grey and every time the pen passes over a cell it turns darker.</li>
+            <li>You can also reset the grid (wipe it clean) or reset and choose a different numbers 
+              of cells per side.</li>
+            <li>Finally, you can toggle between showing all the grid lines and having an outer border and 
+              no grid lines.</li>
+            </ul>
+            <p class="disclaimer"><em>Response will be slower with larger numbers of cells.</em></p>
+        </div>
 
-    <br>
+      <div class="buttons">
+        <button type="button" class="button resetButton">Reset and choose new number of squares per side</button>
+        <button type="button" class="button blankGridButton">Reset only</button>
+        <button type="button" class="button colorBlack">Draw in black</button>
+        <button type="button" class="button colorRandom">Random colors</button>
+        <button type="button" class="button colorGrey">Gradual grey->black</button>
+        <button type="button" class="button toggleGridLines">Toggle grid lines and outer border</button>
+      </div>
 
-    <main>
       <div class="etch-a-sketch-grid cells"></div>
+      <div class="current">
+        <p>Current pen: <span class="curPen">Black</span>. Current number of squares per side: 
+          <span class="curSquareNum">16</span>.</p>
+      </div>
     </main>
 
-    <footer>
+    <footer class="footer">
       <p>By Carolyn Buck-Gengler as part of The Odin Project</p>
-      <p>Open <a target="_blank" 
+      <p><a target="_blank" 
         href="https://www.theodinproject.com/courses/web-development-101/lessons/etch-a-sketch-project">
-        TOP project description</a> in a new tab</p>
+        TOP Etch A Sketch project description</a></p>
+        <p>Background Photo from  <a  target="_blank" href="https://pngtree.com/freebackground/vector-japanese-watercolor-pastel-background_497972.html">pngtree.com</a></p>
+        <p><a target="_blank" href="https://pngtree.com/free-backgrounds">free background photos from pngtree.com</a></p>
     </footer>
 
     <script  src="script.js"></script>
-
   </body>
 </html>

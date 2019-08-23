@@ -1,9 +1,11 @@
 let numSquaresPerSide = 16; /* starting value */
 let backgroundColor = 'white';
 let penColor = "rgba(0,0,0,1)"; /* start with black */
-const gridSize = 1000;
+const gridSize = 800; /* if change gridSize, make sure to change width and height in script.js as well */ 
 const grid = document.querySelector(".cells");
 let showGridLines = true;
+const curPenLoc = document.querySelector(".curPen");
+const curNumSidesLoc = document.querySelector(".curSquareNum");
 
 let mouseDownInGrid = false;
 
@@ -33,14 +35,17 @@ function makeMouseDownFalse(e) {
 
 function penBlack(e) {
     penColor = 'black';
+    curPenLoc.textContent = "Black";
 }
 
 function penRandom(e) {
     penColor = 'random';
+    curPenLoc.textContent = "Random";
 }
 
 function gradual(e) {
     penColor = "rgba(0,0,0,.1)";
+    curPenLoc.textContent = "Gradually darkening grey";
 }
 function blankGrid(e) {
     let mycells = document.querySelectorAll(".cell");
@@ -76,6 +81,7 @@ function resetGrid(e) {
         // numSquaresPerSide = 16;
     } else { 
         numSquaresPerSide = newnumsquares; 
+        curNumSidesLoc.textContent = numSquaresPerSide;
     }
     createGrid(numSquaresPerSide);
     setPenColor();
