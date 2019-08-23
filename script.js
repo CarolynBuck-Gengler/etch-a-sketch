@@ -47,12 +47,14 @@ function gradual(e) {
     penColor = "rgba(0,0,0,.1)";
     curPenLoc.textContent = "Gradually darkening grey";
 }
+
 function blankGrid(e) {
     let mycells = document.querySelectorAll(".cell");
     mycells.forEach((div) => {
         div.style.backgroundColor = backgroundColor;
     });    
 }
+
 function toggleGrid(e) {
     /* Show either gridlines and border in same light grey color OR show no gridlines and darker border */
     /* toggle back and forth between these states */
@@ -134,11 +136,13 @@ function setPenColor() {
                     them back to light gray, and black that was placed there by drawing in black. 
                     Do that by making full black arrived at by this method to be gb(0,0,0,.99)*/
                     let curColor = div.style.backgroundColor;
+                    // console.log("current color: "+curColor);
                     if (curColor === "white") {
                         // original color; make it the first pencolor
                         pen = penColor;
                     } else {
                         curColor = curColor.replace(/[^\d,.]/g, '').split(',');
+                        // console.log(curColor);
                         if (curColor.length === 4) {
                             alpha = Number(curColor[3]);
                             if (alpha < .9) {
@@ -148,6 +152,7 @@ function setPenColor() {
                                 newAlpha = .99;
                             }
                             pen = "rgb(0,0,0,"+newAlpha+")";
+
                         } else { 
                             /* current color has an rgb with 3 values */
                             /* want to reset this to the grey! */

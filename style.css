@@ -44,8 +44,15 @@ button {
     color:  rgb(121, 118, 118); /* darker than dark grey*/
     font-size: .8rem;
 }
-
+.grid-background {
+    background-color: white;
+    z-index: 1;
+    width: 800px; /* if change width and height, make sure to change gridSize in script.js as well */ 
+    height: 800px;
+    margin: 30px auto;
+}
 .etch-a-sketch-grid {
+    z-index: 3;
     margin: 30px auto;
     display: grid;
     grid-auto-rows: 62.5px; /* starting value */
