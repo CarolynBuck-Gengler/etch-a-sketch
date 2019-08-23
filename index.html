@@ -8,27 +8,30 @@
     <link rel="stylesheet" href="style.css">
   </head>
 
-  <body>
+  <body class="cssgrid">
+    <!-- row 1 -->
     <header class="header">
       <h1>cjbg Etch A Sketch project</h1>
     </header>
 
-    <main class="main">
-        <div class="description">
-            <p>Welcome to Etch A Sketch!</p>
-            <ul>
-               <li>You can draw with three different pens: black, random, or 
-              one that starts light grey and every time the pen passes over a cell it turns darker.</li>
-            <li>You can also reset the grid (wipe it clean) or reset and choose a different numbers 
-              of cells per side.</li>
-            <li>Finally, you can toggle between showing all the grid lines and having an outer border and 
-              no grid lines.</li>
-            </ul>
-            <p class="disclaimer"><em>Response will be slower with larger numbers of cells.</em></p>
-        </div>
+    <!-- <main class="main"> -->
+      <!-- row 2 -->
+      <div class="description">
+        <p>Welcome to Etch A Sketch!</p>
+        <ul>
+          <li>You can draw with three different pens: black, random, or 
+          one that starts light grey and every time the pen passes over a cell it turns darker.</li>
+          <li>You can also reset the grid (wipe it clean) or reset and choose a different numbers 
+          of cells per side.</li>
+          <li>Finally, you can toggle between showing all the grid lines and having an outer border and 
+          no grid lines.</li>
+        </ul>
+        <p class="disclaimer"><em>Response will be slower with larger numbers of cells.</em></p>
+      </div>
 
+      <!-- row 3 left side -->
       <div class="buttons">
-        <button type="button" class="button resetButton">Reset and choose new number of squares per side</button>
+        <button type="button" class="button resetButton">Reset/resize</button>
         <button type="button" class="button blankGridButton">Reset only</button>
         <button type="button" class="button colorBlack">Draw in black</button>
         <button type="button" class="button colorRandom">Random colors</button>
@@ -36,22 +39,29 @@
         <button type="button" class="button toggleGridLines">Toggle grid lines and outer border</button>
       </div>
 
+      <hr>
+      <!-- row 3 right side -->
       <div class="grid-background">
         <div class="etch-a-sketch-grid cells"></div>
       </div>
-      <div class="current">
-        <p>Current pen: <span class="curPen">Black</span>. Current number of squares per side: 
-          <span class="curSquareNum">16</span>.</p>
-      </div>
-    </main>
 
+      <!-- row 4 -->
+      <div class="status">
+        <p>Current pen: 
+          <span class="curPen">Black</span>. Current number of squares per side: 
+          <span class="curSquareNum">16</span>.
+        </p>
+      </div>
+    <!-- </main> -->
+
+      <!-- row 5 -->
     <footer class="footer">
       <p>By Carolyn Buck-Gengler as part of The Odin Project</p>
       <p><a target="_blank" 
         href="https://www.theodinproject.com/courses/web-development-101/lessons/etch-a-sketch-project">
-        TOP Etch A Sketch project description</a></p>
-        <p>Background Photo from  <a  target="_blank" href="https://pngtree.com/freebackground/vector-japanese-watercolor-pastel-background_497972.html">pngtree.com</a></p>
-        <p><a target="_blank" href="https://pngtree.com/free-backgrounds">free background photos from pngtree.com</a></p>
+      TOP Etch A Sketch project description</a></p>
+      <p>Background Photo from  <a  target="_blank" href="https://pngtree.com/freebackground/vector-japanese-watercolor-pastel-background_497972.html">pngtree.com</a></p>
+      <p><a target="_blank" href="https://pngtree.com/free-backgrounds">free background photos from pngtree.com</a></p>
     </footer>
 
     <script  src="script.js"></script>

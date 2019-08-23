@@ -13,18 +13,33 @@ html {
 
 body {
     min-height: 100%; 
-    display: grid;
-    grid-template-rows: auto 1fr auto; /* there are THREE rows. adjust grid-row-start and end accordingly*/ 
-    grid-template-areas: 
-        "header" 
-        "main" 
-        "footer";
     margin: 0 auto;
 }
+.cssgrid {
+    display: grid;
+    grid-template-columns: auto 3px 850px;
+    grid-template-rows: 80px auto 850px auto auto; /* now FIVE rows */
+    grid-gap: .1em;
+    grid-template-areas: "header header header"
+                         "description description description"
+                         "sidebar-1 vertline article"
+                         "status status status"
+                         "footer footer footer";
+  }
 
-h1 {
+/* set up grid-area for each */
+header { grid-area: header; } 
+.description { grid-area: description; }
+.buttons { grid-area: sidebar-1; }
+hr { grid-area: vertline; }
+.grid-background { grid-area: article; }
+.status { grid-area: status; }
+footer { grid-area: footer; }
+
+header h1 {
     text-align: center;
     color: rgb(201, 33, 201); /* a bright pinkish purple */
+    margin-bottom: 10px;
 }
 button {
     cursor: pointer;
@@ -44,6 +59,11 @@ button {
     color:  rgb(121, 118, 118); /* darker than dark grey*/
     font-size: .8rem;
 }
+
+hr {
+    width: 1px;
+    size: 850px;
+}
 .grid-background {
     background-color: white;
     z-index: 1;
@@ -53,7 +73,7 @@ button {
 }
 .etch-a-sketch-grid {
     z-index: 3;
-    margin: 30px auto;
+    /* margin: 30px auto; */
     display: grid;
     grid-auto-rows: 62.5px; /* starting value */
     width: 800px; /* if change width and height, make sure to change gridSize in script.js as well */ 
@@ -65,11 +85,11 @@ button {
     height: 62.5px; /* starting value */
     width: 62.5px; /* starting value */
 }
-.current {
+.status {
     text-align: center;
     color: rgb(121, 118, 118); /* darker than dark grey*/
 }
-.current span {
+.status span {
     color: rgb(201, 33, 201); /* a bright pinkish purple */
 }
 footer {
@@ -82,7 +102,7 @@ footer {
 footer p{
     margin: 0;
 }
-.footer {
+/* .footer {
     grid-row-start: 3;
     grid-row-end: 4;
-  }
+  } */
