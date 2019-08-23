@@ -18,12 +18,11 @@ body {
 .cssgrid {
     display: grid;
     grid-template-columns: auto 3px 850px;
-    grid-template-rows: 80px auto 850px auto auto; /* now FIVE rows */
+    grid-template-rows: minmax(80px,auto) minmax(100px,auto) 850px minmax(75px,auto); /* now FOUR rows */
     grid-gap: .1em;
     grid-template-areas: "header header header"
                          "description description description"
                          "sidebar-1 vertline article"
-                         "status status status"
                          "footer footer footer";
   }
 
@@ -48,19 +47,25 @@ button {
     max-width: 150px; */
 }
 
-.description, .buttons {
+.description {
     margin: 0 100px;
 }
 .buttons {
     text-align: center;
+    margin: 10px 20px;
+}
+.buttons p {
+    font-size: .9rem;
+    margin-bottom: .5rem;
 }
 .disclaimer {
     text-align: center;
     color:  rgb(121, 118, 118); /* darker than dark grey*/
     font-size: .8rem;
+    font-style: italic;
 }
 
-hr {
+hr .vert{
     width: 1px;
     size: 850px;
 }
@@ -89,20 +94,22 @@ hr {
     text-align: center;
     color: rgb(121, 118, 118); /* darker than dark grey*/
 }
-.status span {
+.buttons span {
     color: rgb(201, 33, 201); /* a bright pinkish purple */
 }
 footer {
-    height: 80px;
+    min-height: 65px;
     width: 100%;
     font-size: .8rem;
     text-align: center;
-    margin-top: 10px;
+    /* margin-top: 40px; */
+    margin: auto;
+    padding: 5px;
 }
 footer p{
     margin: 0;
 }
-/* .footer {
-    grid-row-start: 3;
-    grid-row-end: 4;
-  } */
+.footer {
+    grid-row-start: 4;
+    grid-row-end: 5;
+  }

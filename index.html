@@ -14,7 +14,6 @@
       <h1>cjbg Etch A Sketch project</h1>
     </header>
 
-    <!-- <main class="main"> -->
       <!-- row 2 -->
       <div class="description">
         <p>Welcome to Etch A Sketch!</p>
@@ -26,35 +25,38 @@
           <li>Finally, you can toggle between showing all the grid lines and having an outer border and 
           no grid lines.</li>
         </ul>
-        <p class="disclaimer"><em>Response will be slower with larger numbers of cells.</em></p>
       </div>
 
+
+
+
+      
       <!-- row 3 left side -->
       <div class="buttons">
+        <p>Reset the grid to a blank slate</p>
+        <button type="button" class="button blankGridButton">Reset</button>
+        <p>Resize the grid with a new number of squares per side, and start with fresh grid</p>
+        <p class="disclaimer">Set to between 1 and 200 inclusive. Response will be slower with larger numbers of cells.</p>
         <button type="button" class="button resetButton">Reset/resize</button>
-        <button type="button" class="button blankGridButton">Reset only</button>
-        <button type="button" class="button colorBlack">Draw in black</button>
+        <p>Current number of squares per side: <span class="curSquareNum">16</span></p>
+        <hr class="horiz">
+        <p>Set the pen</p>
+        <button type="button" class="button colorBlack">Black</button>
         <button type="button" class="button colorRandom">Random colors</button>
         <button type="button" class="button colorGrey">Gradual grey->black</button>
-        <button type="button" class="button toggleGridLines">Toggle grid lines and outer border</button>
+        <p>Current pen:<br><span class="curPen">Black</span></p>
+        <hr class="horiz">
+        <p>Toggle grid lines and outer border</p>
+        <button type="button" class="button toggleGridLines">Toggle</button>
       </div>
 
-      <hr>
+      <hr class="vert">
       <!-- row 3 right side -->
       <div class="grid-background">
         <div class="etch-a-sketch-grid cells"></div>
       </div>
 
       <!-- row 4 -->
-      <div class="status">
-        <p>Current pen: 
-          <span class="curPen">Black</span>. Current number of squares per side: 
-          <span class="curSquareNum">16</span>.
-        </p>
-      </div>
-    <!-- </main> -->
-
-      <!-- row 5 -->
     <footer class="footer">
       <p>By Carolyn Buck-Gengler as part of The Odin Project</p>
       <p><a target="_blank" 
