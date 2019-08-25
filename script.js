@@ -61,16 +61,18 @@ function toggleGrid(e) {
     let mycells = document.querySelectorAll(".cell");
     if (showGridLines) {
         /* turn off gridlines for each cell and turn on outer border */
-        grid.style.border = "2px solid black";
+        grid.style.border = "2px solid #676565"; /* a very dark grey*/
         mycells.forEach((div) => {
             div.style.border = "none";
-        });    
+        });  
+        toggleGridButton.textContent = "Show grid lines";  
     } else {
         /* turn on gridlines for each cell and turn off outer border */
         grid.style.border = "none";
         mycells.forEach((div) => {
             div.style.border = "solid rgb(245, 245, 245) 1px";
         });
+        toggleGridButton.textContent = "Show outer border";
     }
     showGridLines = (showGridLines?false:true);
 }
