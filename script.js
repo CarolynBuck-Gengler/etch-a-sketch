@@ -13,13 +13,17 @@ const resetButton = document.querySelector('.resetButton');
 const blackButton = document.querySelector('.colorBlack');
 const randomButton = document.querySelector('.colorRandom');
 const greyButton = document.querySelector('.colorGrey');
+const rainbowButton = document.querySelector('.colorRainbow');
 const blankGridButton = document.querySelector('.blankGridButton');
 const toggleGridButton = document.querySelector('.toggleGridLines');
+
+let hue=0;
 
 resetButton.addEventListener('click', resetGrid, false);
 blackButton.addEventListener('click', penBlack, false);
 randomButton.addEventListener('click', penRandom, false);
 greyButton.addEventListener('click', gradual, false);
+rainbowButton.addEventListener('click', rainbow, false);
 blankGridButton.addEventListener('click', blankGrid, false);
 toggleGridButton.addEventListener('click', toggleGrid,false);
 
@@ -46,6 +50,11 @@ function penRandom(e) {
 function gradual(e) {
     penColor = "rgba(0,0,0,.1)";
     curPenLoc.textContent = "Gradually darkening grey";
+}
+
+function rainbow(e) {
+    penColor = 'rainbow';
+    curPenLoc.textContent = "Rainbow";
 }
 
 function blankGrid(e) {
@@ -129,6 +138,11 @@ function setPenColor() {
                 }
                 else if (penColor === 'random') {
                     pen = genRandomColor();
+                }
+                else if (penColor === 'rainbow') {
+                    pen = `hsl(${hue},100%,50%)`;
+                    hue++;
+                    if (hue >= 360) hue = 0;
                 }
                 else {
                     /* gradual change from light grey to black */
