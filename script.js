@@ -27,15 +27,17 @@ rainbowButton.addEventListener('click', rainbow, false);
 blankGridButton.addEventListener('click', blankGrid, false);
 toggleGridButton.addEventListener('click', toggleGrid,false);
 
-document.addEventListener('mousedown', makeMouseDownTrue, false);
-document.addEventListener('mouseup', makeMouseDownFalse, false);
+// document.addEventListener('mousedown', makeMouseDownTrue, false);
+// document.addEventListener('mouseup', makeMouseDownFalse, false);
 
-function makeMouseDownTrue(e) {
-    mouseDownInGrid = true;
-}
-function makeMouseDownFalse(e) {
-    mouseDownInGrid = false;
-}
+// function makeMouseDownTrue(e) {
+//     mouseDownInGrid = true;
+// }
+// function makeMouseDownFalse(e) {
+//     mouseDownInGrid = false;
+// }
+document.addEventListener('mousedown', () => mouseDownInGrid = true);
+document.addEventListener('mouseup', () => mouseDownInGrid = false);
 
 function penBlack(e) {
     penColor = 'black';
