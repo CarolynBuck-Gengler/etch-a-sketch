@@ -88,9 +88,9 @@ function toggleGrid(e) {
 
 function resetGrid(e) {
     removeGrid();
-    let newnumsquares = Number(prompt("How many squares per side? (1-200)",numSquaresPerSide));
-    if (isNaN(newnumsquares) || newnumsquares>200 || newnumsquares<1) {
-        alert("need a number between 1 and 200; using previous value "+numSquaresPerSide);
+    let newnumsquares = Number(prompt("How many squares per side? (1-100)",numSquaresPerSide));
+    if (isNaN(newnumsquares) || newnumsquares>100 || newnumsquares<1) {
+        alert("need a number between 1 and 100; using previous value "+numSquaresPerSide);
         // numSquaresPerSide = 16;
     } else { 
         numSquaresPerSide = newnumsquares; 
